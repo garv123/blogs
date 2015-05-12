@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
+
+  before_filter :restrict_access, only: [:show, :update, :destroy, :edit]
   def index
+
   end
 
   def show
@@ -30,6 +33,11 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def restrict_access
+    api_key = ApiKey.find_by_access_token(params[:access_token])
+    head :unauthorized unless api_key
   end
 end
 
