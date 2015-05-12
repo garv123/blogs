@@ -6,6 +6,15 @@ class UsersController < ApplicationController
   end
 
   def show
+    api_key = ApiKey.find_by_access_token(params[:id])
+
+    if api_key == nil
+      render :json => {status: 400,message:"Unauthorized"}
+    else
+      user_id= api_key['user_id']
+      user = User.find(user_id)
+      render :json => {:id =>user.id,:name=>user.name,:email=>user.email}
+     end
   end
 
   def create
@@ -19,9 +28,23 @@ class UsersController < ApplicationController
   end
 
   def update
+    api_key = ApiKey.find_by_access_token(params[:id])
+    if api_key == nil
+      render :json => {status: 400,message:"Unauthorized"}
+    else
+      user_id= api_key['user_id']
+      user = User.find(user_id)
+      if user.update(name: params[:name],email: params[:email],password: params[:password])
+        render :json => user
+      else
+      render :json => {status: 404, message: "Cant update"}
+    end
+
+
   end
 
   def delete
+
   end
 
   def destroy
@@ -36,8 +59,8 @@ class UsersController < ApplicationController
   end
 
   def restrict_access
-    api_key = ApiKey.find_by_access_token(params[:access_token])
-    head :unauthorized unless api_key
+    api_key = ApiKey.find_by_access_token(params[:id])
   end
+
 end
 

@@ -4,36 +4,7 @@ Rails.application.routes.draw do
   
 
   resources :users
-  root 'main#index'
-
-  get 'blogs/index'
-
-  get 'blogs/show'
-
-  get 'blogs/create'
-
-  get 'blogs/update'
-
-  get 'blogs/delete'
-
-  get 'blogs/destroy'
-
-  get 'blogs/edit'
-
-  get 'users/index'
-
-  get 'users/show'
-
-  get 'users/create'
-
-  get 'users/update'
-
-  get 'users/delete'
-
-  get 'users/destroy'
-
-  get 'users/edit'
-
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
