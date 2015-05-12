@@ -4,7 +4,8 @@ window.Blog = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    new Blog.Routers.Users();
+    Backbone.history.start();
   }
 };
 

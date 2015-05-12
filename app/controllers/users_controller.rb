@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   before_filter :restrict_access, only: [:show, :update, :destroy, :edit]
   def index
+    users =User.all
+    render :json => users
 
   end
 
@@ -38,6 +40,7 @@ class UsersController < ApplicationController
         render :json => user
       else
       render :json => {status: 404, message: "Cant update"}
+      end
     end
 
 
