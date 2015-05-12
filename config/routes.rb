@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  resources :sessions
+  get 'sessions/create'
+
   resources :users
   root 'main#index'
 
