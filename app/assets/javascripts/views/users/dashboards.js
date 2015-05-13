@@ -19,7 +19,8 @@ Blog.Views.Dashboards = Backbone.View.extend({
   	user.destroy({
   		success: function(){
   			blogdeletecookie('api_key');
-  			console.log("session destroyed");
+        Blog.router.navigate('',{trigger:true});
+  			
   		}
   	});
   	return false

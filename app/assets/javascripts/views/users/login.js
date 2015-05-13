@@ -37,6 +37,7 @@ Blog.Views.Login= Backbone.View.extend({
       		 var api_key = "api_key";
       		 debugger
       		 blogsetcookie(api_key,user['changed']['api_key'],1);
+           blogsetcookie("name",user['changed']['name'],1);
       		 var url= 'dashboard/'+user['changed']['api_key']; 
       		 Blog.router.navigate(url,{trigger:true});
 

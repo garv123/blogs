@@ -23,9 +23,28 @@ Blog.Routers.Users = Backbone.Router.extend({
 		alert('User id'+id);
 	},
 
+	new :function(){
+		view = new Blog.Views.NewUsers();
+		$('#container').html(view.render());
+
+	},
+
+	login :function(){
+		view = new Blog.Views.Login();
+		$('#container').html(view.render());
+
+	},
+
 	dashboard : function(){
 
 		var view  = new Blog.Views.Dashboards();
+		$('#container').html(view.render());
+
+	},
+
+	users : function(){
+
+		var view  = new Blog.Views.AllUsers();
 		$('#container').html(view.render());
 
 	}

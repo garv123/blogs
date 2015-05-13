@@ -4,8 +4,6 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
     	api_key= ApiKey.create!
     	api_key.update(:user_id=>user.id)
-      debugger
-    	
     	render :json => {api_key:api_key[:access_token],name: user.name}
 
 	else
