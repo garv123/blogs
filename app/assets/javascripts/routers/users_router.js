@@ -3,7 +3,11 @@ Blog.Routers.Users = Backbone.Router.extend({
 	routes: {
 
 		'': 'index',
-		'users/:id': 'show'
+		'users' :'users',
+		'users/:id': 'show',
+		'new': 'new',
+		'login': 'login',
+		'dashboard/:id': 'dashboard'
 
 	},
 
@@ -17,6 +21,13 @@ Blog.Routers.Users = Backbone.Router.extend({
 	show :function(id){
 
 		alert('User id'+id);
+	},
+
+	dashboard : function(){
+
+		var view  = new Blog.Views.Dashboards();
+		$('#container').html(view.render());
+
 	}
 
 

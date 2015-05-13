@@ -4,8 +4,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
     	api_key= ApiKey.create!
     	api_key.update(:user_id=>user.id)
-    	debugger 
-    	render :json => {api_key:api_key[:access_token]}
+      debugger
+    	
+    	render :json => {api_key:api_key[:access_token],name: user.name}
 
 	else
   		render :json => {status:400,message:"User name or password wrong"}
@@ -14,7 +15,6 @@ class SessionsController < ApplicationController
 
   def destroy
   	api_key = ApiKey.find_by_access_token(params[:id])
-  	debugger
   	if api_key != nil
   		api_key.destroy
   		render :json => {status:200,message:"User has been log out"}
